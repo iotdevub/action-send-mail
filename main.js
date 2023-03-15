@@ -44,7 +44,8 @@ async function main() {
         let secure = core.getInput("secure")
         let username = core.getInput("username")
         let password = core.getInput("password")
-
+        let sender = core.getInput("sender")
+        
         if (!secure) {
             secure = serverPort === "465" ? "true" : "false"
         }
@@ -114,6 +115,7 @@ async function main() {
         })
 
         const info = await transport.sendMail({
+            sender: sender,
             from: getFrom(from, username),
             to: to,
             subject: subject,
